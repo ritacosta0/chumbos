@@ -110,54 +110,82 @@
     .screen-wrapper {
         height: 50;
     }
+    .warning {
+        width: 70%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin: auto;
+        text-align: center;
+    }
+    .warning-box {
+        padding: 0.5rem 1rem;
+        flex-direction: column;
+        justify-content: center;
+        transition: background 500ms ease;
+        background: whitesmoke;
+        border-radius: 5px;
+        padding: 0.5rem 1rem;
+    }
 </style>
 
 <svelte:window bind:innerWidth={screenSize} bind:innerHeight={screenHeight} />
 {#if screenSize !== undefined && screenHeight !== undefined}
-    <div class="entry">
-        <h1>Deixados para trás</h1>
-        <p>
-            Em 2020/21, mais de 60 mil alunos deviam ter terminado o ensino
-            secundário nos três anos devidos. Mas quase um em cada quatro ficou
-            para trás. Os gráficos abaixo revelam como se saem os diferentes
-            municípios portugueses nesta métrica e onde é que os estudantes se
-            saem pior (e melhor do que o esperado para o seu contexto).
-        </p>
-    </div>
-    <div class="section-container">
-        <div class="steps-container">
-            <Scrolly bind:value>
-                {#each steps as text, i}
-                    <div class="step" class:active={value === i}>
-                        <div class="step-content">
-                            {@html text}
-                        </div>
-                    </div>
-                {/each}
-                <div class="spacer" />
-            </Scrolly>
-        </div>
-        <div class={value === 6 ? 'sticky last' : 'sticky'}>
-            {#if value == 6}
-                <div class="select-wrapper">
-                    <Select
-                        class="select"
-                        {itemId}
-                        items={data}
-                        {label}
-                        bind:value={selected}
-                        on:change={handleSubmit} />
-                </div>
-            {/if}
-            <div class="screen-wrapper">
-                {#key selected}
-                    <MovingStripe
-                        step={value}
-                        {selected}
-                        screenHeight={screenHeight / 1.1}
-                        {screenSize} />
-                {/key}
+    {#if screenSize < 480}
+        <div class="warning">
+            <div class="warning-box">
+                <p>Optimizado para ecrãs de grandes dimensões</p>
             </div>
         </div>
-    </div>
+    {:else}
+        <div class="entry">
+            <h1>Deixados para trás</h1>
+            <p>
+                Em 2020/21, mais de 60 mil alunos deviam ter terminado o ensino
+                secundário nos três anos devidos. Mas quase um em cada quatro
+                ficou para trás. Os gráficos abaixo revelam como se saem os
+                diferentes municípios portugueses nesta métrica e onde é que os
+                estudantes se saem pior (e melhor do que o esperado para o seu
+                contexto).
+            </p>
+        </div>
+        <div class="section-container">
+            <div class="steps-container">
+                <Scrolly bind:value>
+                    {#each steps as text, i}
+                        <div class="step" class:active={value === i}>
+                            <div class="step-content">
+                                {@html text}
+                            </div>
+                        </div>
+                    {/each}
+                    <div class="spacer" />
+                </Scrolly>
+            </div>
+            <div class={value === 6 ? 'sticky last' : 'sticky'}>
+                {#if value == 6}
+                    <div class="select-wrapper">
+                        <Select
+                            class="select"
+                            {itemId}
+                            items={data}
+                            {label}
+                            bind:value={selected}
+                            on:change={handleSubmit} />
+                    </div>
+                {/if}
+                <div class="screen-wrapper">
+                    {#key selected}
+                        <MovingStripe
+                            step={value}
+                            {selected}
+                            screenHeight={screenHeight / 1.1}
+                            {screenSize} />
+                    {/key}
+                </div>
+            </div>
+        </div>
+    {/if}
 {/if}
