@@ -58,6 +58,8 @@
         y: getRandomNumber(4, screenHeight / 2),
         // type: "pass",
         type: i < 100 - percentSuccessfulStudents ? "fail" : "pass",
+        typeExample1: i < 45 ? "fail" : "pass",
+        typeExample2: i < 5 ? "fail" : "pass",
     }));
 
     const endingArea =
@@ -101,21 +103,9 @@
     }
 </style>
 
-<!-- SVG container -->
-{#if step === 4 && selected['Nome da NUTS II/ NUTS III / Município'] !== 'Total Nacional (Continente) em Cursos Científico-Humanísticos'}
-    <p class="step-content mun-paragraph">
-        Neste município,
-        <span class="mark-fail"> {100 - percentSuccessfulStudents}% </span>
-        dos alunos não terminaram o secundário nos três anos esperados. O valor
-        está
-        <span class="underline">
-            {100 - percentSuccessfulStudents - (100 - expectedSuccessfulStudents) < 0 ? 'abaixo do' : 100 - percentSuccessfulStudents - (100 - expectedSuccessfulStudents) == 0 ? 'em linha com o' : 'acima do'}</span>
-        esperado para alunos de contexto semelhante.
-    </p>
-{/if}
 <svg
     width={screenSize}
-    height={screenHeight}
+    height={screenHeight / 1.5}
     xmlns="http://www.w3.org/2000/svg">
     {#if step > 3}
         <line
@@ -132,15 +122,30 @@
             y={point.y}
             index={point.number}
             type={point.type}
+            type1={point.typeExample1}
+            type2={point.typeExample2}
             endingX={screenSize - 200}
             endingY={screenHeight / 4}
             {percentSuccessfulStudents}
             {step} />
     {/each}
-    {#if expectedSuccessfulStudents !== null || step === 3}
+    {#if (expectedSuccessfulStudents !== null && step === 6) || (step >= 3 && step <= 5)}
         <RefBar
             expectedSuccessfulStudents={expectedSuccessfulStudents === null ? 90 : expectedSuccessfulStudents}
             {screenHeight}
-            {screenSize} />
+            {screenSize}
+            {step} />
     {/if}
 </svg>
+<!-- SVG container -->
+{#if step === 6 && selected['Nome da NUTS II/ NUTS III / Município'] !== 'Total Nacional (Continente) em Cursos Científico-Humanísticos'}
+    <p class="step-content mun-paragraph">
+        Neste município,
+        <span class="mark-fail"> {100 - percentSuccessfulStudents}% </span>
+        dos alunos não terminaram o secundário nos três anos esperados. O valor
+        está
+        <span class="underline">
+            {100 - percentSuccessfulStudents - (100 - expectedSuccessfulStudents) < 0 ? 'abaixo do' : 100 - percentSuccessfulStudents - (100 - expectedSuccessfulStudents) == 0 ? 'em linha com o' : 'acima do'}</span>
+        esperado para alunos de contexto semelhante.
+    </p>
+{/if}

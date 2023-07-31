@@ -2,6 +2,7 @@
     export let screenSize;
     export let screenHeight;
     export let expectedSuccessfulStudents;
+    export let step;
     let endingX = screenSize - 200;
     let endingY = screenHeight / 2;
 

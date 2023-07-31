@@ -11,6 +11,8 @@
     export let endingY;
     export let percentSuccessfulStudents;
     export let step;
+    export let type1;
+    export let type2;
 
     // Duration for the animation (in milliseconds)
     function getRandomNumber(min, max) {
@@ -92,6 +94,34 @@
             });
         }
         if (step == 4) {
+            status = type1 === "pass" ? "#118ab2" : "#fb8500";
+            onMount(() => {
+                // Animate the x and y coordinates from the initial position (0, 0) to the destination coordinates
+
+                animatedX.set(
+                    index === 0 ? 100 : index * (endingX / 100) + 100,
+                    {
+                        duration,
+                    }
+                );
+                animatedY.set(endingY, { duration });
+            });
+        }
+        if (step == 5) {
+            status = type2 === "pass" ? "#118ab2" : "#fb8500";
+
+            onMount(() => {
+                // Animate the x and y coordinates from the initial position (0, 0) to the destination coordinates
+                animatedX.set(
+                    index === 0 ? 100 : index * (endingX / 100) + 100,
+                    {
+                        duration,
+                    }
+                );
+                animatedY.set(endingY, { duration });
+            });
+        }
+        if (step == 6) {
             onMount(() => {
                 // Animate the x and y coordinates from the initial position (0, 0) to the destination coordinates
                 animatedX.set(

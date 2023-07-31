@@ -1,7 +1,6 @@
 <script>
     import data from "../data/data.json";
     import MovingStripe from "./MovingStripe.svelte";
-    import ScrollyStripe from "./ScrollyStripe.svelte";
     import Select from "svelte-select";
     import Scrolly from "../lib/Scrolly.svelte";
 
@@ -9,8 +8,10 @@
     const steps = [
         "<p>No ano lectivo 2018/19, mais de 60 mil alunos começaram o 10º ano em cursos científico humanísticos.</p>",
         "<p>A cada 100 alunos, 23 ficaram para trás, não concluindo o ensino obrigatório no período expectável. </p>",
-        "<p>Os outros 77% terminaram nos três anos esperados, em 2020/21. Os dados são do Portal Infoescolas, do Ministério da Educação, que acompanha o percurso dos alunos ao longo do ciclo de escolaridade.</p>",
-        "<p> Além de olhar para a percentagem dos alunos que concluem no tempo esperado também os compara com os estudantes com perfil semelhante.</p><p> O gráfico abaixo mostra a percentagem de estudantes em cada município que conclui o secundário em três anos e os que ficam para trás e compara esses valores com os de alunos com perfil semelhante.</p>",
+        "<p>Os outros 77% terminaram nos três anos esperados, em 2020/21. Na visualização abaixo, estes rectângulos são utilizados para representar a percentagem de alunos em cada concelho que completa ou não o secundário em três anos.</p>",
+        "<p>Além de olhar, a análise do Ministério da Educação também compara esta percentagem com os estudantes com perfil semelhante.</p>",
+        "<p>Nos concelhos que mais aquém, os rectângulos laranja ultrapassam a marca do gráfico abaixo.</p>",
+        "<p>Nos que mais se superam, é o contrário.</p> <p>No gráfico abaixo é possível explorar como cada município (com mais de 15 alunos na amostra) se saiu em 2020/21.</p>",
         ,
     ];
     let selected = data[0];
@@ -104,7 +105,10 @@
         flex-direction: column-reverse;
     }
     .last {
-        z-index: 10;
+        z-index: 200;
+    }
+    .screen-wrapper {
+        height: 50;
     }
 </style>
 
@@ -133,9 +137,8 @@
                 <div class="spacer" />
             </Scrolly>
         </div>
-        <div class="spacer" />
-        <div class={value === 4 ? 'sticky last' : 'sticky'}>
-            {#if value == 4}
+        <div class={value === 6 ? 'sticky last' : 'sticky'}>
+            {#if value == 6}
                 <div class="select-wrapper">
                     <Select
                         class="select"
@@ -145,14 +148,13 @@
                         bind:value={selected}
                         on:change={handleSubmit} />
                 </div>
-                <div class="small-spacer" />
             {/if}
             <div class="screen-wrapper">
                 {#key selected}
                     <MovingStripe
                         step={value}
                         {selected}
-                        {screenHeight}
+                        screenHeight={screenHeight / 1.1}
                         {screenSize} />
                 {/key}
             </div>
