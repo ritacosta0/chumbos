@@ -10,7 +10,7 @@
         "<p>A cada 100 alunos, 23 ficaram para trás, não concluindo o ensino obrigatório no período expectável. </p>",
         "<p>Os outros 77% terminaram nos três anos esperados, em 2020/21. Na visualização abaixo, estes rectângulos são utilizados para representar a percentagem de alunos em cada concelho que completa ou não o secundário em três anos.</p>",
         "<p>O rectângulo que se divide em dois — laranja ou azul — é usado para ilustrar outra métrica: a que compara os estudantes de uma determinada região com outros com perfil semelhante.</p>",
-        "<p>Nos concelhos que mais ficam aquém, os rectângulos laranja ultrapassam a marca do gráfico debaixo.</p>",
+        "<p>Nos concelhos que mais ficam aquém, os rectângulos laranja ultrapassam a marca da mesma cor no gráfico de referência.</p>",
         "<p>Nos que mais se superam, é o contrário.</p> <p>Explore a visualização abaixo para ver como cada município (com mais de 15 alunos na amostra) se saiu em 2020/21.</p>",
         ,
     ];
