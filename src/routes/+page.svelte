@@ -38,6 +38,18 @@
         margin: auto;
         text-align: center;
     }
+    .bottom {
+        font-size: small;
+        width: 70%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        flex-direction: column;
+        margin: auto;
+        text-align: center;
+        padding-bottom: 2%;
+    }
     h1 {
         font-size: 5rem;
     }
@@ -145,10 +157,11 @@
             <p>
                 Em 2020/21, mais de 60 mil alunos deviam ter terminado o ensino
                 secundário nos três anos devidos. Mas quase um em cada quatro
-                ficou para trás. Os gráficos abaixo revelam como se saem os
-                diferentes municípios portugueses nesta métrica e onde é que os
-                estudantes se saem pior (e melhor do que o esperado para o seu
-                contexto).
+                ficou para trás. Os gráficos abaixo — que utilizam dados da
+                Direção de Estatísticas da Educação e Ciência (DGEEC) — revelam
+                como se saem os diferentes municípios portugueses nesta métrica
+                e onde é que os estudantes se saem pior (e melhor do que o
+                esperado para o seu contexto).
             </p>
         </div>
         <div class="section-container">
@@ -187,5 +200,9 @@
                 </div>
             </div>
         </div>
+        <p class="bottom">
+            Dados da Direção de Estatísticas da Educação e Ciência (DGEEC).
+            Feito com Svelte
+        </p>
     {/if}
 {/if}
